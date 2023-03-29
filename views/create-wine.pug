@@ -1,0 +1,42 @@
+extends layout.pug 
+
+block content 
+    section.section.page
+        h1= title
+
+        if wine
+
+            form.form#update-form(data-id= wine.id)
+                label Name of the wine
+                input.input(type="text", name="name" value= wine.name)
+
+                label Year of the wine
+                input.input(type="number", name="age", value= wine.age)
+
+                label Country of the wine 
+                select.input.country(name="module")
+                    each module in countries 
+                        if module.moduleId == wine.module
+                            option(value= module.moduleId, selected) #{ module.title }
+                        else      
+                            option(value= module.moduleId) #{ module.title }
+                //- label Phone number
+                //- input.input(type="number", name="telephone") 
+                button.input.submit#update-record Update             
+        
+        else 
+            form.form(action="/wines/create", method="POST")
+                label Name of the wine
+                input.input(type="text", name="name")
+
+                label Year of the wine
+                input.input(type="number", name="age")
+
+                label Country of the wine 
+                select.input.country(name="module")
+                    each module in countries 
+                        option(value= module.moduleId, selected) #{ module.title }    
+                //- label Phone number
+                //- input.input(type="number", name="telephone") 
+                
+                button.input.submit Submit 

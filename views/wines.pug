@@ -1,0 +1,18 @@
+extends layout.pug 
+
+block content 
+    section.section.page
+        h1= title
+
+        if wines.length
+            ul.list.wines
+                each wine in wines
+                    li.list-item 
+                        a(href="/wines") #{wine.name}, #{wine.age} year of the harvey #{wine.telephone}
+                        div 
+                            button.update-btn(data-id= wine.id) Update
+                            button.delete-btn(data-id= wine.id) Delete 
+                         
+
+        else 
+            h4 No records found 
